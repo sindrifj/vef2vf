@@ -1,5 +1,5 @@
 # VEFÞ2VFC
-## Sindri Fandal 
+## Sindri Fanndal 
 ### Github verkefnageymsla - _Classroom repository_
 
 * Í verkefnageymslunni eru verkefnamöppur sem nemendur skila sínum verkefnalausnum í. 
