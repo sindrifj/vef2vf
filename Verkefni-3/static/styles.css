@@ -40,3 +40,6 @@ h2{
 .fotur{
     text-align: center;
 }
+td{
+    border: 1px solid black;
+}

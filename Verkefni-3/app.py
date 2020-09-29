@@ -5,36 +5,16 @@ import urllib.request #importa url fyrir python til að sækja json url
 #Listi fyrir frettir á fréttasíðu
 app = Flask(__name__)
 
+with urllib.request.urlopen("http://apis.is/petrol/") as url:
+    data = json.loads(url.read().decode())
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", data=data) #senda data sem data í index skjalið
 
-@app.route("/a-hluti")
-def ahluti():
-    return render_template("kennitala.html")
-
-with open("/home/sindri/Documents/skoli2020/vef2vf/Verkefni-2 - json/static/frettirj.json",encoding="utf-8") as skra:
-    frettirj = json.load(skra)
-    print(frettirj)
-
-@app.route("/b-hluti")
-def bhluti():
-    return render_template("frettir.html", frettirj=frettirj)
-
-@app.route("/frett/<id>")
-def frett(id):
-    return render_template("frett.html",frettirj=frettirj,id=id) # fyrri er nafið í jason skjali
-
-@app.route("/ktala/<kt>") #seinni kt kemur fra kennitala template 
-def ktalan(kt): # setjum kt inn i þettana streng
-    summa = 0
-    for item in kt:
-        summa = summa + int(item) #þurfum að breita í int því allt er strengur enþá
-    return render_template("ktsum.html",kt=kt,summa=summa) # skilar bæði kt og summu
-
-@app.route("/gengi")
-def frett(id):
-    return render_template("frett.html",frettirj=frettirj,id=id) # fyrri er nafið í jason skjali
+@app.route("/eldsneyti")
+def eldsneyti():
+    return render_template("eldsneyti.html", data=data) #senda data sem data í index skjalið
 
 @app.errorhandler(404)
 def pagenotfound(error):

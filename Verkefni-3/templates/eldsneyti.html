@@ -4,11 +4,14 @@
     <h1>
         Verð á eldsneiti á íslandi
     </h1>
-    <main>
+    <div class="listi">
+        <table>
         {%for item in data["results"]%} <!-- data sem ég sendi frá app.py og tek resault sem er  strengur sem við rennum í gegnum og finnum company-->
-            <p>{{item.company}}</p>  <!--her byrtum við tildæmis company-->
-            <p>{{item.bensin95}}</p>
+            <tr> <!--tr Table row, td table data sækir gögn beint frá síðunni ekki minni -->
+                <td>{{item.company}} </td><td>{{item.name}}</td><td>Verð 95 okt: <b>{{item.bensin95}} kr</b></td><td>Verð Diesel: <b>{{item.diesel}} kr</b></td>
+            </tr>
         {%endfor%}
-    </main>
+        </table>
+    </div>
     <p><a href="/">Forsíða</a></p>
 {% endblock %}
