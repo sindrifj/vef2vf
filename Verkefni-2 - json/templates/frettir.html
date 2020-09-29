@@ -1,0 +1,17 @@
+{%extends "base.html"%}
+{% block content %}
+<h1>
+    {%block title%}
+        Fréttir
+    {%endblock%}
+</h1>
+        <main class="row">
+            <section>
+                <ol>
+                    {%for item in frettirj["frettirj"] %}
+                        <li><a href="/frett/{{ item.id }}">{{ item.titill }}</a></li>
+                    {%endfor%}
+                </ol>
+            </section>
+        </main>
+{% endblock %}

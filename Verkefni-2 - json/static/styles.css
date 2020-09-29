@@ -1,0 +1,42 @@
+body {
+    max-width: 80em;
+    border: 1px solid black;
+    margin: 1em auto;
+
+}
+h1{
+    font-size: 1em;
+}
+nav{
+    text-align: center;
+}
+nav a{
+    text-decoration: none;
+    color: black;
+    padding-right: 2em;
+    font-size: 0.9em;
+}
+
+nav a:hover{
+
+    color: red;
+
+}
+
+.villa404 {
+    float: center;
+    margin: 10%;
+}
+.villa404 h1{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-size: 4em;
+}
+h2{
+    text-align: center;
+    font-size: 1em;
+}
+.fotur{
+    text-align: center;
+}

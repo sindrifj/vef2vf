@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{% block content %}
+    <h1>
+
+        <main class="row">
+        {%for item in frettirj["frettirj"]%} <!-- skjal["hvað á að sækja"] -->
+            {%if item.id == id %} <!-- item.id er það sem var skýrt í jason skjali sem var id -->
+                <section>
+                    <h1>{{ item.titill }}</h1> <!-- item.id er það sem var skýrt í jason skjali sem var titill -->
+                    <img src="/static/mynd{{ item.id }}.jpg" height="500">
+                </section>
+                <section>
+                    <p>
+                        {{ item.innihald }}
+                    </p>
+                    <p>
+                        Höfundur: {{ item.hofundur }}
+                    </p>
+                </section>
+            {%endif%}
+        {%endfor%}
+        </main>
+{%endblock%}

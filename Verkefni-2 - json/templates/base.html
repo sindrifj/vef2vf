@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- opna block með blcok og loka með endblock -->
+    <title>{%block title%} <h1>vef</h1> {%endblock%}</title> 
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    {%include "haus.html" ignore missing%}
+<main>
+    {% block content %} 
+    {% endblock %}
+</main>
+    {%include "fotur.html" ignore missing%}
+</body>
+</html>
