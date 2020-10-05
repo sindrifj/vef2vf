@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Elsneitisverð{% endblock %}
+{% block content %}
+<table>'
+    <caption>Allar Bensínstöðvar fyrirtækis</caption>
+    
+        <th>Fyrirtæki</th><th>Staður</th>
+    
+        {% set cnt = [] %} <!-- Búa til lista sem heitir cnt-->
+        {% for item in data["results"] %} <!--renna i gegnum reulst fra api -->
+        <tr>
+            {% if item.company == com %} <!--ef fyrirtækið er það sama og færibreytia frá app skjali -->
+            {% do cnt.append(item.company) %} <!-- setja það í cnr listann-->
+                <td>{{ item.company}}</td><td><a href="/moreinfo/{{ item.key }}">{{ item.name }}</a></td>
+            {% endif %}
+        </tr>
+        
+        {% endfor %}
+    
+</table>
+
+
+<p>Fjöldi stöðva: {{ cnt | length }}</p> <!--jinja filter sem við pípum cnt listanum í sem heitir lenght og tekur saman lengina á listanum -->
+{% endblock %}

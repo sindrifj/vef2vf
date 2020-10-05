@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Ein bensínstöð{% endblock %}
+{% block content %}
+    <h2>Nánari upplýsingar</h2>
+    {% for item in data["results"] %}
+        {% if item.key == k %}
+        <h3>Söluaðili: {{item.company}} </h3>
+        <h3>Staður: {{item.name}}</h3>
+        <h3>Verð á liter af 95 okt: {{item.bensin95}} kr</h3>
+        <h3>Verð á liter af Dísel: {{item.diesel}} kr</h3>
+        <div id="map"></div>
+            <script>
+                var map = L.map('map').setView([{{item.geo.lat}}, {{item.geo.lon}}], 19);
+
+                L.tileLayer("https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=fD80odpve2NkGBwIoBWR",{
+                    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',   
+                }).addTo(map);
+
+                L.marker([{{item.geo.lat}}, {{item.geo.lon}}]).addTo(map)
+                    .bindPopup("{{item.company}} {{item.name}}").openPopup();
+
+                var popup = L.popup();
+
+	            function onMapClick(e) {
+		            popup
+			            .setLatLng(e.latlng)
+			            .setContent("Hnit: " + e.latlng.toString())
+			            .openOn(map);
+	            }
+
+	            map.on('click', onMapClick);
+
+            </script>
+        <div class="kort">
+            <h4>Staðsetning</h4>
+            <ul>
+                <li>Breiddargráða: {{item.geo.lat}}</li>
+                <li>Lengdargráða: {{item.geo.lon}}</li>
+                <li><a href="https://www.google.com/maps/@{{item.geo.lat}},{{item.geo.lon}},17z">Sjá kort</a></li> <!--senda í google latitute og long-->
+            </ul>
+            <div class="box">
+                <p><a href="https://www.google.com/maps/place/{{item.street}},+{{item.locality}}" target="_blank">{{item.street}}<br>{{item.postalcode}} {{item.locality}}<br><br><b>hnit:</b><br>{{item.lat}}<br>{{item.lng}}</a></p> 
+
+            </div>
+
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Verkefni 3{% endblock %}
+{% block title %}Elsneitisverð{% endblock %}
 {% block content %}
-    <h1>
-        Verð á eldsneiti á íslandi
-    </h1>
-    <main>
+    <div class="wrapper">
+        {% set oneCo = [] %}
         {%for item in data["results"]%} <!-- data sem ég sendi frá app.py og tek resault sem er  strengur sem við rennum í gegnum og finnum company-->
-            <p>{{item.company}}</p>  <!--her byrtum við tildæmis company-->
-            <p>{{item.bensin95}}</p>
-        {%endfor%}
-    </main>
+            {% if item.company not in oneCo %}
+                {% do oneCo.append(item.company) %}
+                <div class="box">
+                    <a href="/company/{{item.company}}"> <!-- hér förum við yfir á route sem heitir company/item.company eða /<company> í app.py-->
+                        <img src="static/{{item.company}}.png" title="{{item.company}}">
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
     <p><a href="/">Forsíða</a></p>
 {% endblock %}
